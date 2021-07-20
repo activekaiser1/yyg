@@ -88,6 +88,19 @@ document.ontouchmove = function(event){
     event.preventDefault();
 }
 
+            function dulli(){
+                       setInterval(function(){ 
+ source[0] = audioCtx.createBufferSource();
+  source[0].buffer = bufferLike[3];
+  source[0].connect(audioCtx.destination);
+  source[0].loop = false;
+  source[0].start();  
+
+}, 1000);
+                       };                    
+                       
+                       
+                       
 
 function init() {
     if (window.DeviceOrientationEvent) {
@@ -105,7 +118,7 @@ function init() {
 
    function deviceOrientationHandler(tiltLR, tiltFB, dir) {
       
-
+    dulli();
                                                                     
    ctxx.clearRect(0,0,window.innerWidth,window.innerHeight);
         ctxx.fillStyle = "black";
@@ -119,18 +132,9 @@ function init() {
      
                        
                        
-                       function dulli(){
-                       setInterval(function(){ 
- source[0] = audioCtx.createBufferSource();
-  source[0].buffer = bufferLike[3];
-  source[0].connect(audioCtx.destination);
-  source[0].loop = false;
-  source[0].start();  
-
-}, 1000);
-                       };
+              
                        
-                       dulli();
+                   
  
                      </script>  
   </body>
