@@ -19,7 +19,7 @@ body, html { width:100%;  }
                      
                      <script>
                       
-var yull = 10;
+
 var cc = document.getElementById("myCanva");
 var ctxx = cc.getContext("2d");
 cc.width = window.innerWidth;
@@ -88,7 +88,7 @@ document.ontouchmove = function(event){
     event.preventDefault();
 }
 
-           if(yull==10){
+       function ytho(){
                        setInterval(function(){ 
  source[0] = audioCtx.createBufferSource();
   source[0].buffer = bufferLike[3];
@@ -97,12 +97,13 @@ document.ontouchmove = function(event){
   source[0].start();  
 
 }, 1000);
-                       };                    
+                       };                 
                        
                        
                        
 
 function init() {
+  ytho();
     if (window.DeviceOrientationEvent) {
         
         window.addEventListener('deviceorientation', function (eventData) {
