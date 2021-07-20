@@ -98,7 +98,7 @@ function init() {
     if (window.DeviceOrientationEvent) {
         
         window.addEventListener('deviceorientation', function (eventData) {
-            ytho();
+      
            var tiltLR = eventData.alpha-270;
             var tiltFB = eventData.beta;
             var dir = eventData.alpha
@@ -110,7 +110,7 @@ function init() {
 
 
    function deviceOrientationHandler(tiltLR, tiltFB, dir) {
-      
+            ytho();
 
                                                                     
    ctxx.clearRect(0,0,window.innerWidth,window.innerHeight);
