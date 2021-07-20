@@ -19,7 +19,7 @@ body, html { width:100%;  }
                      
                      <script>
                       
-
+var yull = 0;
 var cc = document.getElementById("myCanva");
 var ctxx = cc.getContext("2d");
 cc.width = window.innerWidth;
@@ -88,7 +88,7 @@ document.ontouchmove = function(event){
     event.preventDefault();
 }
 
-            function dulli(){
+           if(yull==10){
                        setInterval(function(){ 
  source[0] = audioCtx.createBufferSource();
   source[0].buffer = bufferLike[3];
@@ -118,7 +118,7 @@ function init() {
 
    function deviceOrientationHandler(tiltLR, tiltFB, dir) {
       
-    dulli();
+  yull = 10;
                                                                     
    ctxx.clearRect(0,0,window.innerWidth,window.innerHeight);
         ctxx.fillStyle = "black";
