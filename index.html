@@ -1,0 +1,124 @@
+<canvas id="myCanva"></canvas>
+
+<style>
+               
+ * { margin: 0; padding: 0;}
+
+body, html { width:100%;  }
+
+
+
+      #myCanva {
+    width:100%;
+                        
+}
+                     </style>
+                     
+                     <script>
+                      
+
+var cc = document.getElementById("myCanva");
+var ctxx = cc.getContext("2d");
+cc.width = window.innerWidth;
+cc.height = window.innerWidth;
+cc.style.position = "absolute";
+cc.style.top = window.innerHeight/2 - window.innerWidth/2 + "px";
+                                                                
+var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+var bufferLike = [];
+var source = [];
+var gainNode= [];
+var daya = ["https://archive.org/download/loyalteesigsnare/LoyalteesigSnare.wav",
+"https://archive.org/download/loyalteesig-hi-hat/LoyalteesigHi%20Hat.WAV",
+ "https://archive.org/download/trap-crash/Trap%20Crash.wav",
+"https://archive.org/download/calm-club-808/Calm%20Club%20808.wav"];
+       
+
+var i;
+for (i = 0; i < 4; i++) {
+
+
+createSound(daya[i]);
+};
+
+
+
+function createSound(inyh) {
+
+
+  var request = new XMLHttpRequest();
+
+  request.open("GET", inyh, true);
+
+  request.responseType = 'arraybuffer';
+
+  request.onload = function() {
+
+    audioData = request.response;
+    audioCtx.decodeAudioData(audioData, function(buffer) {
+    
+       bufferLike.push(buffer);
+    
+      },
+
+      function(e){ console.log("Error with decoding audio data" + e.err); });
+
+  }
+
+  request.send();
+
+
+};
+
+
+setInterval(function(){ 
+
+ source[0] = audioCtx.createBufferSource();
+  source[0].buffer = bufferLike[3];
+  source[0].connect(audioCtx.destination);
+  source[0].loop = false;
+  source[0].start();
+
+  
+
+
+}, 1000);
+
+
+document.ontouchmove = function(event){
+    event.preventDefault();
+}
+
+
+function init() {
+    if (window.DeviceOrientationEvent) {
+        
+        window.addEventListener('deviceorientation', function (eventData) {
+           var tiltLR = eventData.alpha-270;
+            var tiltFB = eventData.beta;
+            var dir = eventData.alpha
+           
+            deviceOrientationHandler(tiltLR, tiltFB, dir);
+        }, false);
+    } 
+}
+
+
+   function deviceOrientationHandler(tiltLR, tiltFB, dir) {
+      
+     
+                                                                    
+        ctxx.clearRect(0,0,window.innerWidth,window.innerHeight);
+       
+        ctxx.fillRect(window.innerWidth/2-5-tiltLR*20, window.innerWidth/2-5-tiltFB*20, 10, 10);    
+     
+if(window.innerWidth/2-5-tiltLR*20<0){
+ source[0].start(0);   
+};
+     
+      
+    }
+
+
+ 
+                     </script>
